@@ -9,6 +9,7 @@ public section.
   interfaces IF_T100_MESSAGE .
 
   constants:
+    " Segment &1 is incorrect for IDoc type &2/&3
     BEGIN OF segment_incorrect_for_idoc,
         msgid TYPE symsgid VALUE 'ZCL_IDOC_MESSAGES',
         msgno TYPE symsgno VALUE '001',
@@ -18,6 +19,7 @@ public section.
         attr4 TYPE scx_attrname VALUE '',
       END OF segment_incorrect_for_idoc .
   constants:
+    " Parent segment &1 not found
     begin of PARENT_SEGMENT_NOT_FOUND,
       msgid type symsgid value 'ZCL_IDOC_MESSAGES',
       msgno type symsgno value '003',
@@ -27,6 +29,7 @@ public section.
       attr4 type scx_attrname value '',
     end of PARENT_SEGMENT_NOT_FOUND .
   constants:
+    " Segment &1 should be a child of segment &2
     begin of SEGMENT_CHILD_OF_SEGMENT,
       msgid type symsgid value 'ZCL_IDOC_MESSAGES',
       msgno type symsgno value '002',
