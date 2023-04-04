@@ -36,12 +36,13 @@ CLASS zcl_idoc_edidd DEFINITION
   PROTECTED SECTION.
 
     TYPES:
+      ygt_idoc_structure TYPE STANDARD TABLE OF edi_iapi06,
       ygt_idoc_structure_sorted TYPE SORTED TABLE OF edi_iapi06
         WITH UNIQUE KEY idoctyp cimtyp nr
         WITH UNIQUE SORTED KEY segtyp COMPONENTS segtyp .
 
     DATA ao_segments TYPE REF TO cl_object_collection .
-    DATA at_idoc_structure TYPE fkk_edi_iapi06_tt .
+    DATA at_idoc_structure TYPE ygt_idoc_structure .
     DATA at_idoc_structure_sorted TYPE ygt_idoc_structure_sorted .
     DATA av_idoc_extension TYPE edi_cimtyp .
     DATA av_idoc_type TYPE edi_idoctp .
@@ -59,7 +60,7 @@ CLASS zcl_idoc_edidd DEFINITION
         !iv_idoc_type      TYPE edi_idoctp
         !iv_idoc_extension TYPE edi_cimtyp
         !it_edidd          TYPE edidd_tt OPTIONAL
-        !it_idoc_structure TYPE fkk_edi_iapi06_tt
+        !it_idoc_structure TYPE ygt_idoc_structure
       RAISING
         zcx_idoc_exceptions .
   PRIVATE SECTION.
