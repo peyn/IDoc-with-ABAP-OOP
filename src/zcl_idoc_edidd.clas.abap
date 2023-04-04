@@ -237,7 +237,7 @@ CLASS zcl_idoc_edidd IMPLEMENTATION.
 
   METHOD create_with_data.
     DATA:
-      lt_idoc_structure TYPE fkk_edi_iapi06_tt.
+      lt_idoc_structure TYPE ygt_idoc_structure.
 
     CALL FUNCTION 'EDI_IDOC_SYNTAX_GET'
       EXPORTING
