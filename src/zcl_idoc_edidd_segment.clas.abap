@@ -22,6 +22,9 @@ CLASS zcl_idoc_edidd_segment DEFINITION
     METHODS get_sdata
       RETURNING
         VALUE(rs_sdata) TYPE edi_sdata .
+    METHODS get_segment_number
+      RETURNING
+        VALUE(rv_number) TYPE idocdsgnum
     METHODS set_sdata
       IMPORTING
         !is_sdata TYPE any .
@@ -97,6 +100,11 @@ CLASS zcl_idoc_edidd_segment IMPLEMENTATION.
 
   METHOD get_sdata.
     rs_sdata = as_edidd-sdata.
+  ENDMETHOD.
+
+
+  METHOD get_segment_number.
+    rv_number = as_edidd-segnum.
   ENDMETHOD.
 
 
