@@ -1,38 +1,49 @@
-CLASS zcl_idoc_edidd_segment DEFINITION
-  PUBLIC
-  INHERITING FROM zcl_idoc_edidd
-  FINAL
-  CREATE PUBLIC
+class ZCL_IDOC_EDIDD_SEGMENT definition
+  public
+  inheriting from ZCL_IDOC_EDIDD
+  final
+  create public
 
-  GLOBAL FRIENDS zcl_idoc_edidd .
+  global friends ZCL_IDOC_EDIDD .
 
-  PUBLIC SECTION.
+public section.
 
-    METHODS constructor
-      IMPORTING
-        !iv_idoc_type      TYPE edi_idoctp
-        !iv_idoc_extension TYPE edi_cimtyp
-        !is_edidd          TYPE edidd
-        !it_idoc_structure TYPE fkk_edi_iapi06_tt
-      RAISING
-        zcx_idoc_exceptions .
-    METHODS get_name
-      RETURNING
-        VALUE(rv_name) TYPE edilsegtyp .
-    METHODS get_sdata
-      RETURNING
-        VALUE(rs_sdata) TYPE edi_sdata .
-    METHODS get_segment_number
-      RETURNING
-        VALUE(rv_number) TYPE idocdsgnum
-    METHODS set_sdata
-      IMPORTING
-        !is_sdata TYPE any .
+  methods CONSTRUCTOR
+    importing
+      !IV_IDOC_TYPE type EDI_IDOCTP
+      !IV_IDOC_EXTENSION type EDI_CIMTYP
+      !IS_EDIDD type EDIDD
+      !IT_IDOC_STRUCTURE type FKK_EDI_IAPI06_TT
+    raising
+      ZCX_IDOC_EXCEPTIONS .
+  methods GET_HIERARCHY_LEVEL
+    returning
+      value(RV_VALUE) type EDI_HLEVEL .
+  methods GET_IDOC_NUMBER
+    returning
+      value(RV_VALUE) type EDI_DOCNUM .
+  methods GET_NAME
+    returning
+      value(RV_VALUE) type EDILSEGTYP .
+  methods GET_PARENT_NUMBER
+    returning
+      value(RV_VALUE) type EDI_PSGNUM .
+  methods GET_SDATA
+    returning
+      value(RS_VALUE) type EDI_SDATA .
+  methods GET_SEGMENT_NUMBER
+    returning
+      value(RV_VALUE) type IDOCDSGNUM .
+  methods SET_SDATA
+    importing
+      !IS_VALUE type ANY
+    returning
+      value(RO_INSTANCE) type ref to ZCL_IDOC_EDIDD_SEGMENT .
 
-    METHODS add_segment
-         REDEFINITION .
-    METHODS get_edidd
-         REDEFINITION .
+  methods ADD_SEGMENT
+    redefinition .
+  methods GET_EDIDD
+    redefinition .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -41,7 +52,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_idoc_edidd_segment IMPLEMENTATION.
+CLASS ZCL_IDOC_EDIDD_SEGMENT IMPLEMENTATION.
 
 
   METHOD add_segment.
@@ -94,21 +105,37 @@ CLASS zcl_idoc_edidd_segment IMPLEMENTATION.
 
 
   METHOD get_name.
-    rv_name = as_edidd-segnam.
+    rv_value = as_edidd-segnam.
   ENDMETHOD.
 
 
   METHOD get_sdata.
-    rs_sdata = as_edidd-sdata.
-  ENDMETHOD.
-
-
-  METHOD get_segment_number.
-    rv_number = as_edidd-segnum.
+    rs_value = as_edidd-sdata.
   ENDMETHOD.
 
 
   METHOD set_sdata.
-    MOVE is_sdata TO as_edidd-sdata.
+    MOVE is_value TO as_edidd-sdata.
+    ro_instance = me.
+  ENDMETHOD.
+
+
+  METHOD get_hierarchy_level.
+    rv_value = as_edidd-hlevel.
+  ENDMETHOD.
+
+
+  METHOD get_idoc_number.
+    rv_value = as_edidd-docnum.
+  ENDMETHOD.
+
+
+  METHOD get_parent_number.
+    rv_value = as_edidd-psgnum.
+  ENDMETHOD.
+
+
+  METHOD get_segment_number.
+    rv_value = as_edidd-segnum.
   ENDMETHOD.
 ENDCLASS.
